@@ -1,0 +1,4 @@
+node_modules
+config.js
+.DS_STORE
+public/css/app.css

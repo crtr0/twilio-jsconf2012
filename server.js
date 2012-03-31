@@ -1,4 +1,4 @@
-// REQUIRED MODULES 
+// Required Modules 
 
 var config = require('./config'),
     telenode = require('telenode'),
@@ -7,7 +7,7 @@ var config = require('./config'),
     express = require('express'),
     stylus = require('stylus');
 
-// WEB APPLICATION CONFIGURATION 
+// Configuration 
 
 var connection = new(cradle.Connection)(config.couchdb.url, config.couchdb.port, {
         auth:{username: config.couchdb.username, password: config.couchdb.password}}),
@@ -29,13 +29,7 @@ app.configure(function(){
 
 twilio.credentials({sid: config.twilio.sid, authToken: config.twilio.key});
 
-cowpokes.save('_design/users', {
-    in: {
-        map: function (doc) { if (doc.opt == 'in') emit(null, doc); }
-    }
-});
-
-// UTILITY FUNCTIONS
+// Utility Functions
 
 var updateBus = function(response, direction) {
     var now = new Date();
@@ -74,7 +68,7 @@ var smsify = function(str) {
     else { return str.substr(0,157)+'...'; }
 };
 
-// CONFIGURE OUR ROUTES 
+// Routes 
 
 app.get('/', function(request, response) {
     response.render('index.jade');
@@ -240,7 +234,7 @@ app.get('/test', function(request, response) {
     response.send('test');
 });
 
-// SPIN-UP OUR WEBSERVER 
+// Webserver 
 
 var port = process.env.PORT || 3000;
 
